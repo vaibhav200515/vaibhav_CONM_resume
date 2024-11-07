@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary to Decimal Conversion in C</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px;
+            background-color: #f0f0f0; /* Light background */
+            color: #333333; /* Dark text color */
+        }
+        h1, h2 {
+            color: #000000; /* Dark headings */
+        }
+        pre {
+            background-color: #e0e0e0; /* Light code background */
+            padding: 15px;
+            border: 1px solid #ccc; /* Slightly darker border */
+            overflow: auto;
+            border-radius: 5px;
+            font-size: 14px; /* Adjust font size */
+        }
+        .output {
+            background-color: #f0f0f0; /* Same as body */
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .output pre {
+            color: #333333; /* Output text color */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bisection Mtethod in C</h1>
+    <h2>Code:</h2>
+    <pre>
+
+        <!-- code -->
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+  
+    int main() {
+        double x0, tolerance;
+        int maxIterations;
+    
+        // Take user inputs
+        printf("Enter initial guess: ");
+        scanf("%lf", &x0);
+        printf("Enter tolerance (e.g., 1e-6): ");
+        scanf("%lf", &tolerance);
+        printf("Enter maximum iterations: ");
+        scanf("%d", &maxIterations);
+    
+        double x1;
+        int i;
+    
+        for (i = 0; i < maxIterations; i++) {
+            double fx = x0 * x0 * x0 - x0 - 1;           // f(x) = x^3 - x - 1
+            double dfx = 3 * x0 * x0 - 1;                 // f'(x) = 3x^2 - 1
+    
+            x1 = x0 - fx / dfx;                           // Newton-Raphson formula
+    
+            if (fabs(x1 - x0) < tolerance) {              // Check for convergence
+                printf("Root found: %.6f\n", x1);
+                return 0;
+            }
+    
+            x0 = x1;                                      // Update x0
+        }
+    
+        printf("Root not found within %d iterations\n", maxIterations);
+        return 0;
+    }
+    
+
+
+    </pre>
+
+    <h2> Output:</h2>
+    <div class="output">
+        <pre>
+            <!-- output -->
+            
+            Enter initial guess: 1.5
+            Enter tolerance (e.g., 1e-6): 0.000001
+            Enter maximum iterations: 1000
+            Root found: 1.324718
+
+        </pre>
+    </div>
+
+</body>
+</html>

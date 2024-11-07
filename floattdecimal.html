@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary to Decimal Conversion (Floating Point) in C</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px;
+            background-color: #f0f0f0;
+            color: #333333;
+        }
+        h1, h2 {
+            color: #000000;
+        }
+        pre {
+            background-color: #e0e0e0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            overflow: auto;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .output {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .output pre {
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>floating point representation binary to decimal in C</h1>
+    <h2>Code:</h2>
+    <pre>
+#include &lt;stdio.h&gt;
+//floating point representation binary to decimal
+
+void main()
+{
+	int bm,be;
+	int nm=0,rem,pow=1;
+	float ne=0.0,powe=2.0,num;
+	int temp=10000,i;
+	
+	printf("Enter binary of mantissa : ");
+	scanf("%d",&bm);
+	printf("Enter binary of exponent (5 digits) : ");
+	scanf("%d",&be);
+	printf("Entered binary number : %d.%d",bm,be);
+	
+	while(bm>0)
+	{
+		rem=bm%10;
+		bm=bm/10;
+		nm=nm+rem*pow;
+		pow=pow*2;
+	}
+	
+	for(i=0;i<5;i++)
+	{
+		rem=be/temp;
+		be=be%temp;
+		temp=temp/10;
+		ne=ne+rem/powe;
+		powe=powe*2.0;
+	}
+	
+	num=nm+ne;
+	printf("\nDecimal of entered number : %f",num);
+}
+
+
+    </pre>
+
+    <h2> Output:</h2>
+    <div class="output">
+        <pre>
+            Enter binary of mantissa : 1101
+            Enter binary of exponent (5 digits) : 10100
+            Entered binary number : 1101.10100
+            Decimal of entered number : 13.000000
+            
+        </pre>
+    </div>
+
+</body>
+</html>

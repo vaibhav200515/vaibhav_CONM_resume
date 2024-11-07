@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary to Decimal Conversion in C</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px;
+            background-color: #f0f0f0; /* Light background */
+            color: #333333; /* Dark text color */
+        }
+        h1, h2 {
+            color: #000000; /* Dark headings */
+        }
+        pre {
+            background-color: #e0e0e0; /* Light code background */
+            padding: 15px;
+            border: 1px solid #ccc; /* Slightly darker border */
+            overflow: auto;
+            border-radius: 5px;
+            font-size: 14px; /* Adjust font size */
+        }
+        .output {
+            background-color: #f0f0f0; /* Same as body */
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .output pre {
+            color: #333333; /* Output text color */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>regula falsi method in C</h1>
+    <h2>Code:</h2>
+    <pre>
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+
+int x,i,c=0;
+int coff[10];
+float a,b,ans;
+float i1,j;
+
+float convert(float x1, float x2)
+{
+	float sum=x1-x2;
+	if(sum<0)
+	{
+		return -sum;
+	}
+	else
+	{
+		return sum;
+	}
+}
+
+float solve(float i1)
+{
+	ans=0.0;
+	for(i=x;i>=0;i--)
+	{
+		ans=ans+pow(i1,i)*coff[i];
+	}
+	return ans;
+}
+
+void main()
+{	
+	float y1,y2;
+	
+	printf("Enter largest exponent : ");
+	scanf("%d",&x);
+	
+	//getting cofficients
+	for(i=x;i>=0;i--)
+	{
+		printf("Enter cofficient of %d : ",i);
+		scanf("%d",&coff[i]);
+	}
+	
+	//print equation
+	printf("\nEntered equation : ");
+	for(i=x;i>=0;i--)
+	{
+		if(i>0)
+		{
+			printf("(%dx^%d) + ",coff[i],i);
+		}
+		else
+		{
+			printf("(%d) = 0",coff[i]);
+		}
+	}
+	
+	//solving equation
+	for(j=-3;j<=3;j+=0.5)
+	{
+		ans=solve(j);
+		printf("\nx = %.2f \t f(%.2f) = %.4f",j,j,ans);
+	}
+	
+	printf("\nEnter value of a (f(x)<0) : ");
+	scanf("%f",&a);
+	printf("Enter value of b (f(x)>0) : ");
+	scanf("%f",&b);
+	printf("\na=%.2f\tb=%.2f",a,b);
+	
+	if(solve(a)*solve(b)>0)
+	{
+		printf("\nValues are not sutaible");
+	}
+	else
+	{
+		do
+		{
+			y1=(a*solve(b)-b*solve(a))/(solve(b)-solve(a));
+			c++;
+			ans=solve(y1);
+			printf("\nIteration %d ",c);
+
+			if(ans==0)
+			{
+				y2=y1;
+				break;
+			}
+			
+			if(ans*solve(a)>0)
+			{
+				a=y1;
+			}
+			else 
+			{
+				b=y1;
+			}
+			y2=(a*solve(b)-b*solve(a))/(solve(b)-solve(a));
+			printf("\nx%d=%.4f \t f(%.4f)=%.4f",c,y1,y1,ans);
+			printf("\na=%.2f\tb=%.2f \t x%d=%.4f",a,b,c+1,y2);
+		}while(convert(y1,y2)>0.0002);
+	}
+	printf("\n\nRoot of the equation : %.4f",y2);
+}
+
+
+
+    </pre>
+
+    <h2> Output:</h2>
+    <div class="output">
+        <pre>
+            Enter largest exponent : 2
+            Enter coefficient of 2 : 1
+            Enter coefficient of 1 : 0
+            Enter coefficient of 0 : -4
+            
+            Entered equation : (1x^2) + (0x^1) + (-4) = 0
+            
+            x = -3.00     f(-3.00) = 5.0000
+            x = -2.50     f(-2.50) = 2.2500
+            x = -2.00     f(-2.00) = 0.0000
+            x = -1.50     f(-1.50) = -1.7500
+            x = -1.00     f(-1.00) = -3.0000
+            x = -0.50     f(-0.50) = -3.7500
+            x = 0.00      f(0.00)  = -4.0000
+            x = 0.50      f(0.50)  = -3.7500
+            x = 1.00      f(1.00)  = -3.0000
+            x = 1.50      f(1.50)  = -1.7500
+            x = 2.00      f(2.00)  = 0.0000
+            x = 2.50      f(2.50)  = 2.2500
+            x = 3.00      f(3.00)  = 5.0000
+            
+            Enter value of a (f(x)<0) : -2
+            Enter value of b (f(x)>0) : 2
+            
+            a=-2.00   b=2.00
+            
+            Iteration 1
+            x1 = 0.0000     f(0.0000) = -4.0000
+            a=0.0000        b=2.0000   x2 = 1.3333
+            
+            Iteration 2
+            x1 = 1.3333     f(1.3333) = 0.7778
+            a=0.0000        b=1.3333   x3 = 1.0909
+            
+            Iteration 3
+            x1 = 1.0909     f(1.0909) = -0.1488
+            a=1.0909        b=1.3333   x4 = 1.1351
+            
+            Iteration 4
+            x1 = 1.1351     f(1.1351) = 0.0218
+            a=1.0909        b=1.1351   x5 = 1.1282
+            
+            Iteration 5
+            x1 = 1.1282     f(1.1282) = -0.0034
+            a=1.1282        b=1.1351   x6 = 1.1294
+            
+            Iteration 6
+            x1 = 1.1294     f(1.1294) = 0.0005
+            a=1.1282        b=1.1294   x7 = 1.1292
+            
+            Iteration 7
+            x1 = 1.1292     f(1.1292) = -0.0001
+            a=1.1292        b=1.1294   x8 = 1.1293
+            
+            Iteration 8
+            x1 = 1.1293     f(1.1293) = 0.0000
+            a=1.1292        b=1.1293   x9 = 1.1293
+            
+            Root of the equation : 1.1293
+            
+        </pre>
+    </div>
+
+</body>
+</html>

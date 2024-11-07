@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decimal to Binary Conversion in C</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px;
+            background-color: #f0f0f0; /* Light background */
+            color: #333333; /* Dark text color */
+        }
+        h1, h2 {
+            color: #000000; /* Dark headings */
+        }
+        pre {
+            background-color: #e0e0e0; /* Light code background */
+            padding: 15px;
+            border: 1px solid #ccc; /* Slightly darker border */
+            overflow: auto;
+            border-radius: 5px;
+            font-size: 14px; /* Adjust font size */
+        }
+        .output {
+            background-color: #f0f0f0; /* Same as body */
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .output pre {
+            color: #333333; /* Output text color */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Decimal to Binary Conversion in C</h1>
+    <h2>Code:</h2>
+    <pre>
+#include &lt;stdio.h&gt;
+
+void main() {
+    int num1, num2, t, bin = 0, pow = 1;
+    
+    printf("Enter any number: ");
+    scanf("%d", &num1);
+    
+    num2 = num1;
+    
+    while (num2 > 0) {
+        t = num2 % 2;      
+        num2 = num2 / 2;   
+        bin = bin + t * pow;
+        pow = pow * 10;    
+    }
+    
+    printf("Binary of %d is: %d", num1, bin);
+}
+    </pre>
+
+    <h2> Output:</h2>
+    <div class="output">
+        <pre>
+Enter any number: 13
+Binary of 13 is: 1101
+        </pre>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage with Sidebar and Frame</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background:url(depo.jpg) no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 400px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 15px;
+            color: #fff;
+            position: relative;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: #555;
+            border-radius: 10px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #ff5722;
+            border-radius: 10px;
+            border: 3px solid #555;
+        }
+
+        .home-button {
+            text-align: right;
+            margin-bottom: 20px; /* Add space below the home button */
+            position: sticky;
+            top: 20px; /* Adjust to desired position */
+        }
+
+        .home-button a {
+            color: #fff;
+            background-color: #ff0ca6;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .home-button a:hover {
+            background-color: #0df4c2;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+           
+        }
+        
+        
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            margin-left: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Home Button -->
+            <div class="home-button">
+                <a href="../index.html" >Home</a>
+            </div>
+
+            <div>
+                <h2>Unit 3</h2>
+                <ul>
+                    <li><a href="newton-forward.html" target="content-frame">1.Newton’ s Forward Difference Interpolation Formula </a></li>
+                    <li><a href="newton-backward.html" target="content-frame">2.Newton’ s Backward Difference Interpolation Formula </a></li>
+                    <li><a href="newton-divided.html" target="content-frame">3.Newton’ s Divided Difference Interpolation Formula </a></li>
+                    <li><a href="lagrange-interpolation.html" target="content-frame">4.Lagrange Interpolation </a></li>
+                    <li><a href="Inverse-interpolation.html" target="content-frame">5.Inverse Interpolation </a></li>
+                    <li><a href="Trapezoidal-rule.html" target="content-frame">6.Trapezoidal Rule </a></li>
+                    <li><a href="1-3rule.html" target="content-frame">7.Simpson’s 1/3rd Rule </a></li>
+                    <li><a href="3-8rule.html" target="content-frame">8.Simpson’s 3/8th Rule </a></li>
+
+
+                   
+                    
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <iframe class="content-frame" name="content-frame" title="Content Frame"></iframe>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary to Decimal Conversion in C</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px;
+            background-color: #f0f0f0; /* Light background */
+            color: #333333; /* Dark text color */
+        }
+        h1, h2 {
+            color: #000000; /* Dark headings */
+        }
+        pre {
+            background-color: #e0e0e0; /* Light code background */
+            padding: 15px;
+            border: 1px solid #ccc; /* Slightly darker border */
+            overflow: auto;
+            border-radius: 5px;
+            font-size: 14px; /* Adjust font size */
+        }
+        .output {
+            background-color: #f0f0f0; /* Same as body */
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .output pre {
+            color: #333333; /* Output text color */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bisection Mtethod in C</h1>
+    <h2>Code:</h2>
+    <pre>
+
+        <!-- code -->
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+  
+    int main() {
+        int n, i, j, iterations;
+        double tolerance;
+    
+        printf("Enter the number of equations: ");
+        scanf("%d", &n);
+    
+        double a[n][n], b[n], x[n], newX[n];
+    
+        // Input coefficients of the matrix
+        printf("Enter the coefficients of the augmented matrix:\n");
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++) {
+                printf("a[%d][%d]: ", i, j);
+                scanf("%lf", &a[i][j]);
+            }
+            printf("b[%d]: ", i);
+            scanf("%lf", &b[i]);
+            x[i] = 0;  // Initial guess for solution
+        }
+    
+        printf("Enter the tolerance (e.g., 1e-6): ");
+        scanf("%lf", &tolerance);
+        printf("Enter maximum number of iterations: ");
+        scanf("%d", &iterations);
+    
+        int k;
+        for (k = 0; k < iterations; k++) {
+            int converged = 1;  // Assume solution is converging
+            for (i = 0; i < n; i++) {
+                newX[i] = b[i];
+                for (j = 0; j < n; j++) {
+                    if (i != j) {
+                        newX[i] -= a[i][j] * x[j];
+                    }
+                }
+                newX[i] /= a[i][i];
+    
+                // Check convergence
+                if (fabs(newX[i] - x[i]) > tolerance) {
+                    converged = 0;
+                }
+    
+                // Update the current value
+                x[i] = newX[i];
+            }
+    
+            // If solution has converged, break the loop
+            if (converged) {
+                break;
+            }
+        }
+    
+        // Display the solution
+        printf("Solution after %d iterations:\n", k + 1);
+        for (i = 0; i < n; i++) {
+            printf("x[%d] = %.6f\n", i + 1, x[i]);
+        }
+    
+        return 0;
+    }
+    
+
+
+    </pre>
+
+    <h2> Output:</h2>
+    <div class="output">
+        <pre>
+            <!-- output -->
+            Enter the number of equations: 3
+            Enter the coefficients of the augmented matrix:
+            a[0][0]: 4
+            a[0][1]: 1
+            a[0][2]: 1
+            b[0]: 7
+            a[1][0]: 1
+            a[1][1]: 3
+            a[1][2]: 2
+            b[1]: 4
+            a[2][0]: 1
+            a[2][1]: 1
+            a[2][2]: 5
+            b[2]: 6
+            Enter the tolerance (e.g., 1e-6): 0.000001
+            Enter maximum number of iterations: 100
+            Solution after 5 iterations:
+            x[1] = 1.000000
+            x[2] = 1.000000
+            x[3] = 1.000000
+
+            
+        </pre>
+    </div>
+
+</body>
+</html>

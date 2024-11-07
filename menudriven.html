@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negative Decimal to Binary Conversion in C</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px;
+            background-color: #f0f0f0;
+            color: #333333;
+        }
+        h1, h2 {
+            color: #000000;
+        }
+        pre {
+            background-color: #e0e0e0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            overflow: auto;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .output {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .output pre {
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Menu for binary operations in C</h1>
+    <h2>Code:</h2>
+    <pre>
+#include &lt;stdio.h&gt;
+
+void main()
+{
+	int ch,num1,num2,i,t,rem,c=0;
+	int bin1[8]={0},bin2[8]={0},ans[8]={0};
+	
+	do
+	{
+		printf("\n\nMenu");
+		printf("\n1). Addition");
+		printf("\n2). Subtraction");
+		printf("\n3). Multiplication");
+		printf("\n4). Division");
+		printf("\n5). Exit");
+		
+		printf("\nEnter your choice : ");
+		scanf("%d",&ch);
+		
+		if(ch>=1 && ch<=4)
+		{
+			printf("\nEnter binary of first number : ");
+			scanf("%d",&num1);
+			printf("Enter binary of second number : ");
+			scanf("%d",&num2);
+			
+			i=7;
+			t=10000000;
+			while(num1>0)
+			{
+				rem=num1/t;
+				num1%=t;
+				t/=10;
+				bin1[i]=rem;
+				i--;
+			}
+			
+			i=7;
+			t=10000000;
+			while(num2>0)
+			{
+				rem=num2/t;
+				num2%=t;
+				t/=10;
+				bin2[i]=rem;
+				i--;
+			}
+			
+			printf("\nFirst number : ");
+			for(i=7;i>=0;i--)
+			{
+				printf("%d",bin1[i]);
+			}
+			
+			printf("\nSecond number : ");
+			for(i=7;i>=0;i--)
+			{
+				printf("%d",bin2[i]);
+			}
+		}
+		
+		switch(ch)
+		{
+			case 1:
+				for(i=7;i>=0;i--)
+				{
+					if(bin1[i]==1 && bin2[i]==1)
+					{
+						if(c==1)
+						{
+							ans[i]=1;
+						}
+						else
+						{
+							ans[i]=0;
+						}
+						c=1;
+					}
+					else if((bin1[i]==1 && bin2[i]==0) || (bin1[i]==0 && bin2[i]==1))
+					{
+						if(c==1)
+						{
+							ans[i]=0;
+							c=1;
+						}
+						else
+						{
+							ans[i]=1;
+						}
+					}
+					else if(bin1[i]==0 && bin2[i]==0)
+					{
+						if(c==1)
+						{
+							ans[i]=1;
+						}
+						else
+						{
+							ans[i]=0;
+						}
+					}
+				}
+				printf("\nAddition : ");
+				for(i=7;i>=0;i--)
+				{
+					printf("%d",ans[i]);
+				}
+				break;
+			case 2:
+				printf("\nSubtraction");
+				break;
+			case 3:
+				printf("\nMultiplication");
+				break;
+			case 4:
+				printf("\nDivision");
+				break;
+			case 5:
+				printf("\nExit");
+				break;
+			default:
+				printf("\nInvalid choice");
+		}
+	}while(ch!=5);
+}
+
+    </pre>
+
+    <h2>Output:</h2>
+    <div class="output">
+        <pre>
+            Menu
+            1). Addition
+            2). Subtraction
+            3). Multiplication
+            4). Division
+            5). Exit
+            Enter your choice: 1
+            
+            Enter binary of first number: 11001000
+            Enter binary of second number: 00101000
+            
+            First number: 11001000
+            Second number: 00101000
+            Addition: 11100000
+            
+        </pre>
+    </div>
+
+</body>
+</html>

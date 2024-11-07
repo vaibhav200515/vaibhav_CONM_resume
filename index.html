@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Big Buttons</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color:grey;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            background: url(depo.jpg) no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Navbar Styles */
+        nav {
+            width: 100%;
+            background-color: rgba(244, 12, 167, 0.792);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            text-align: center;
+        }
+        nav:hover{
+            background-color: rgb(8, 250, 72);
+            transition: all 0.4s ease-in-out;
+        }
+
+        nav h2 {
+            color: #fff;
+            font-size: 2rem;
+            margin: 0;
+            margin-left: 150px;
+            display: inline-block;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        nav h2:hover {
+            color: #f4f7f6;
+            text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease-in-out;
+            font-size: 2.4rem;
+        }
+
+        nav .student-info-btn {
+            float: right;
+            color: #fff;
+            font-size: 1.2rem;
+            background-color: #a134db;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav .student-info-btn:hover {
+            background-color: #2dd221;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Student Info Panel */
+        .student-info-panel {
+            position: fixed;
+            top: 50px;
+            right: -400px; /* Hidden initially */
+            width: 300px;
+            height: 400px;
+            background-color: #fff;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 200;
+            transition: right 0.3s ease;
+        }
+
+        .student-info-panel h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .student-info-panel ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .student-info-panel ul li {
+            margin-bottom: 15px;
+        }
+
+        .student-info-panel .close-btn {
+            background-color: purple;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Button styles */
+        .container {
+            text-align: center;
+            margin-top: 250px; /* Adjust for navbar height */
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .button-group {
+            display:grid;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 20px 60px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align:center;
+            text-decoration: none;
+            border-radius: 100px;
+
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 6px 10px rgba(2, 69, 239, 0.97);
+        }
+
+        .btn-blue { background-color: #0bf0e8; }
+        .btn-green { background-color: #b2f40a; }
+        .btn-orange { background-color: #0af50e; }
+        .btn-red { background-color: #f10fcf; }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @media screen and (min-width: 768px) {
+            .button-group {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <h2>Computer Oriented Numerical Methods</h2>
+        <div class="student-info-btn" id="studentInfoBtn">Student Info</div>
+    </nav>
+
+    <!-- Floating Student Info Panel -->
+    <div class="student-info-panel" id="studentInfoPanel">
+        <h3>Student Information</h3>
+        <ul>
+            <li><strong>Name:</strong> Vaibhav Rautela</li>
+            <li><strong>Roll no.</strong>4102/23</li>
+            <li><strong>Subject: </strong>Computer oriented Numerical Methods</li>
+            <li><strong>Course</strong> BCA 3rd Semester</li>
+            
+
+            <li><strong>Submitted to</strong> Nisha Mam</li>
+        </ul>
+        <button class="close-btn" id="closeBtn">Close</button>
+    </div>
+
+    <div class="container">
+        <h1>Select any unit</h1>
+
+        <div class="button-group">
+            <a href="unit1.html" class="btn btn-blue">Unit 1</a>
+            <a href="unit2.html" class="btn btn-green">Unit 2</a>
+            <a href="unit3.html" class="btn btn-orange">Unit 3</a>
+            <a href="unit4.html" class="btn btn-red">Unit 4</a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to toggle the student info panel
+        const studentInfoBtn = document.getElementById('studentInfoBtn');
+        const studentInfoPanel = document.getElementById('studentInfoPanel');
+        const closeBtn = document.getElementById('closeBtn');
+
+        studentInfoBtn.addEventListener('click', () => {
+            studentInfoPanel.style.right = '0'; // Slide in the panel
+        });
+
+        closeBtn.addEventListener('click', () => {
+            studentInfoPanel.style.right = '-400px'; // Slide out the panel
+        });
+    </script>
+
+</body>
+</html>

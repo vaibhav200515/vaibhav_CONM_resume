@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decimal to Binary Conversion (Floating Point) in C</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 20px;
+            background-color: #f0f0f0;
+            color: #333333;
+        }
+        h1, h2 {
+            color: #000000;
+        }
+        pre {
+            background-color: #e0e0e0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            overflow: auto;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .output {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .output pre {
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Decimal to Binary Conversion (Floating Point) in C</h1>
+    <h2>Code:</h2>
+    <pre>
+#include &lt;stdio.h&gt;
+
+void main()
+{
+    int num;
+    int rem, pow = 1;
+    long int binm = 0;
+    int i, exp, man;
+    int bine[5];
+    
+    printf("Enter any number (4 digits Mantissa 2 digits Exponent): ");
+    scanf("%d", &num);
+    exp = num % 100;
+    man = num / 100;
+    printf("Entered number: %d.%d", man, exp);
+    
+    while (man > 0)
+    {
+        rem = man % 2;
+        man = man / 2;
+        binm = binm + rem * pow;
+        pow = pow * 10;
+    }
+    
+    for (i = 0; i < 5; i++)
+    {
+        exp = 2 * exp;
+        rem = exp / 100;
+        exp = exp % 100;
+        bine[i] = rem;
+    }
+    
+    printf("\nBinary of entered decimal: %d.", binm);
+    for (i = 0; i < 5; i++)
+    {
+        printf("%d", bine[i]);
+    }
+}
+    </pre>
+
+    <h2> Output:</h2>
+    <div class="output">
+        <pre>
+Enter any number (4 digits Mantissa 2 digits Exponent): 1234
+Entered number: 1234.00
+Binary of entered decimal: 100110100.00000
+        </pre>
+    </div>
+
+</body>
+</html>
